@@ -10,20 +10,6 @@ A **wireless Pomodoro status display** built using an **Adafruit Feather nRF5284
 
 ---
 
-##  Features
-
-| Feature | Status |
-|---------|--------|
-| Wireless BLE control | ✅ |
-| OLED countdown timer | ✅ |
-| Header text like "Pomodoro ends in" | ✅ |
-| NeoPixel status (Red = Work, Blue = Pause, Yellow = End, Green = Idle) | ✅ |
-| Battery-friendly | ✅ |
-| Optional Freeplane integration | ✅ |
-| Cross-platform BLE control | ✅ via Python (`bleak`) |
-
----
-
 ## 🔧 Hardware Build Guide
 
 ### Parts List
