@@ -28,7 +28,7 @@ A **wireless Pomodoro status display** built using an **Adafruit Feather nRF5284
 
 ### Wiring
 
-If using stacking headers (recommended), **no wiring needed**—just plug the FeatherWing onto the Feather.
+None required if using stacking headers - just plug the FeatherWing onto the Feather.
 
 For manual wiring:
 
