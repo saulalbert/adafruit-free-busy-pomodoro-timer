@@ -24,9 +24,9 @@ A **wireless Pomodoro status display** built using an **Adafruit Feather nRF5284
 | Solder headers | 1 | attach OLED FeatherWing |
 | Breadboard/jumpers (optional) | – | for testing |
 
-### Neopixel safety 
+### Neopixel safety  (optional)
 
-Simple safety components for NeoPixel recommended by Adafruit:
+Simple safety components for NeoPixel recommended by Adafruit - but optional if you're only using one neopixel.
 
 | Component | Purpose |
 |-----------|---------|
