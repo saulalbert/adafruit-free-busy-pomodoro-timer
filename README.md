@@ -1,6 +1,6 @@
 # Pomodoro BLE Display (Adafruit Feather + OLED + NeoPixel)
 
-A **wireless Pomodoro status display** built using an **Adafruit Feather nRF52840**, a **SH1107 OLED FeatherWing**, and a **NeoPixel**. It receives **BLE commands** from a Mac/Linux/Windows machine and shows **Pomodoro status + timer + color indicator**.
+A **wireless Pomodoro status display** built using an **Adafruit Feather nRF52840**, a **SH1107 OLED FeatherWing**, and a **NeoPixel**. It receives **BLE commands** and shows **Pomodoro status + timer + color indicator**.
 
 * Wireless (Bluetooth Low Energy)  
 * Works with any Pomodoro app / custom automation  
@@ -48,13 +48,143 @@ For manual wiring:
 *(GPIO pin can be changed in `code.py`.)*
 
 ---
+## Firmware Installation (Feather)
 
-##  Firmware Installation
-
-1. Install **CircuitPython 9.2.x** on your Feather:
+1. Install **CircuitPython 9.2.x** on the Feather  
    https://circuitpython.org/board/feather_nrf52840_express/
-
-2. Download the **CircuitPython 9.x Library Bundle**:
+2. Download **CircuitPython Library Bundle 9.x**  
    https://circuitpython.org/libraries
+3. Copy these to `CIRCUITPY/lib/`:
+   ```
+   adafruit_ble/
+   adafruit_bus_device/
+   adafruit_register/
+   adafruit_displayio_sh1107.mpy
+   adafruit_display_text/
+   neopixel.mpy
+   ```
+4. Copy `code.py` from this repo to the `CIRCUITPY` drive
+5. Reset the board — you should see:
+   - OLED: `Idle`
+   - NeoPixel: green
 
-3. Copy these folders/files into the `CIRCUITPY/lib/` folder:
+---
+
+##  BLE Control
+
+The display responds to **BLE UART commands**:
+
+| Command | Effect |
+|---------|--------|
+| `START <seconds>` | Start countdown |
+| `PAUSE` | Pause timer |
+| `RESUME` | Resume |
+| `STOP` | Stop timer |
+| `BREAK <seconds>` | Optional break mode |
+
+Example:
+```
+START 1500
+PAUSE
+RESUME
+STOP
+```
+
+---
+
+## Desktop BLE Client (Mac only here: `mac_pomodoro_ble.py`)
+
+Run BLE commands from your computer:
+
+### Install dependency:
+```bash
+python3 -m pip install bleak
+```
+
+### Example:
+```bash
+python3 mac_pomodoro_ble.py START 1500
+```
+
+You might have to rewrite the pomodoro_ble.py script to work with your platform.
+
+---
+
+## Use Without Freeplane
+
+At this point, you can trigger the hardware timer however you want:
+- From shell scripts
+- Integrate it with StreamDeck
+- Use Raycast or Keyboard Maestro
+- Connect it to Obsidian or log workflows
+- Tie into your own Pomodoro app - I made one for [Freeplane]([url](https://docs.freeplane.org/)) - see below.
+
+Example shell alias:
+```bash
+alias pomo25='python3 mac_pomodoro_ble.py START 1500'
+```
+
+---
+
+## Optional Freeplane Integration
+
+If you want full mind-map + Pomodoro workflow, follow the set-up instructions for my standaline freeplane pomodoro timer here: https://github.com/saulalbert/freeplane-pomodoro-timer
+
+* Use the script in this repo: `pomodoro_timer.groovy`  
+* Automatically sends BLE commands  
+* Tracks time per Freeplane node  
+* Optional log to attributes
+
+🔧 Freeplane setup:
+1. Enable scripting in settings
+2. Install Groovy Pomodoro script
+3. Configure path to `mac_pomodoro_ble.py`
+4. Start timer — Feather updates wirelessly
+5. You might want to create a copy of the script for 'offline' use (i.e., when you're not connecting to the feather).
+
+> Freeplane integration is **optional** and lives in its own folder.
+
+---
+
+## ⚙️ Configuration
+
+Edit settings at the top of `code.py`:
+
+```python
+CONFIG = {
+  "ble_name": "PomodoroDisp",
+  "text_pomodoro": "Pomodoro ends in",
+  "text_break": "Break ends in",
+  "text_idle": "Idle",
+  "text_paused": "Paused",
+  "text_done": "Done!",
+  "neopixel_pin": "D5"
+}
+```
+
+---
+
+## Power
+
+- Runs from USB **or** LiPo battery
+- Supports automatic charging
+- You can put this on the door of your office to dissuade interruptions
+
+---
+
+## License
+
+This project is released as **CC0-1.0 – Public Domain**  
+
+---
+
+## Maybe happening next
+
+- Integrations into other pomodoro timers
+- Battery saver mode
+- Task name on OLED
+- 3D printable enclosure
+- Web Bluetooth control
+- Cross-platform GUI
+
+
