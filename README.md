@@ -1,17 +1,74 @@
-# adafruit-free-busy-pomodoro-timer
-A free-busy light and OLED-based pomodoro timer based on adafruit feather to shows when you're ready to be interrupted
+# Pomodoro BLE Display (Adafruit Feather + OLED + NeoPixel)
 
-## Parts
+A **wireless Pomodoro status display** built using an **Adafruit Feather nRF52840**, a **SH1107 OLED FeatherWing**, and a **NeoPixel**. It receives **BLE commands** from a Mac/Linux/Windows machine and shows **Pomodoro status + timer + color indicator**.
 
-1. Microcontroller: Adafruit Feather nRF52840 Express
-2. OLED display: Adafruit FeatherWing OLED - 128x64 OLED Add-on for Feather (STEMMA QT / Qwiic
-3. Battery: 2000mAh 3.7V LiPo Battery
-4. Battery charger: Adafruit Micro Lipo - USB LiIon/LiPoly charger - v2
-5. Battery cable: JST 2-pin Extension Cable with On/Off Switch - JST PH2
-6. LED (for free/busy light): Adafruit NeoPixel Breakout with JST SH Connectors
-7. Cable for NeoPixel brekout: JST SH Compatible 1mm Pitch 3 Pin to Premium Male Headers Cable - 100mm long
-8. Capacitor (for the NeoPixel LED): 100uF 50V Low Impedance Electrolytic Capacitor 105°
-9. Resistor (for the NeoPixel LED): 330 ohm Ω - 1/4W Watt Metal Film Resistors 0.25 ±1%
+* Wireless (Bluetooth Low Energy)  
+* Works with any Pomodoro app / custom automation  
+* Tiny desk display  
+* Battery-powered and hackable  
+* Optional Freeplane integration  
 
-## Documentation to follow.
-   
+---
+
+##  Features
+
+| Feature | Status |
+|---------|--------|
+| Wireless BLE control | ✅ |
+| OLED countdown timer | ✅ |
+| Header text like "Pomodoro ends in" | ✅ |
+| NeoPixel status (Red = Work, Blue = Pause, Yellow = End, Green = Idle) | ✅ |
+| Battery-friendly | ✅ |
+| Optional Freeplane integration | ✅ |
+| Cross-platform BLE control | ✅ via Python (`bleak`) |
+
+---
+
+## 🔧 Hardware Build Guide
+
+### Parts List
+
+| Item | Qty | Link |
+|------|-----|------|
+| Adafruit Feather nRF52840 Express | 1 | https://www.adafruit.com/product/4062 |
+| SH1107 OLED FeatherWing (128x64) | 1 | https://www.adafruit.com/product/4650 |
+| NeoPixel 5mm or Mini PCB | 1 | https://www.adafruit.com/product/1734 or similar |
+| JST-PH Battery | 1 | https://www.adafruit.com/category/889 |
+| USB-C or Micro USB cable | 1 | for flashing |
+| Solder headers | 1 | attach OLED FeatherWing |
+| Breadboard/jumpers (optional) | – | for testing |
+
+---
+
+### Wiring
+
+If using stacking headers (recommended), **no wiring needed**—just plug the FeatherWing onto the Feather.
+
+For manual wiring:
+
+| OLED Pin | Feather Pin |
+|----------|-------------|
+| `3V`     | 3V |
+| `GND`    | GND |
+| `SDA`    | SDA |
+| `SCL`    | SCL |
+
+| NeoPixel Pin | Feather Pin |
+|---------------|-------------|
+| `+`           | 3V |
+| `-`           | GND |
+| `DIN`         | D5 |
+
+*(GPIO pin can be changed in `code.py`.)*
+
+---
+
+##  Firmware Installation
+
+1. Install **CircuitPython 9.2.x** on your Feather:
+   https://circuitpython.org/board/feather_nrf52840_express/
+
+2. Download the **CircuitPython 9.x Library Bundle**:
+   https://circuitpython.org/libraries
+
+3. Copy these folders/files into the `CIRCUITPY/lib/` folder:
