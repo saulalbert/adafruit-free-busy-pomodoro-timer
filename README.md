@@ -4,7 +4,7 @@ A **wireless Pomodoro status display** built using an **Adafruit Feather nRF5284
 
 * Wireless (Bluetooth Low Energy)  
 * Works with any Pomodoro app / custom automation  
-* Tiny desk display  
+* Tiny desk or free/busy office door display  
 * Battery-powered and hackable  
 * Optional Freeplane integration  
 
