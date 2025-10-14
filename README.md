@@ -24,6 +24,15 @@ A **wireless Pomodoro status display** built using an **Adafruit Feather nRF5284
 | Solder headers | 1 | attach OLED FeatherWing |
 | Breadboard/jumpers (optional) | – | for testing |
 
+### Neopixel safety 
+
+Probably not needed for a single pixel, but if you have multiple, best to add:
+
+Feather D5 ---- 470Ω resistor ----> NeoPixel DIN
+Feather 3V -----------------------> NeoPixel +
+Feather GND ----------------------> NeoPixel GND
+1000µF capacitor across + and GND (note polarity)
+
 ---
 
 ### Wiring
