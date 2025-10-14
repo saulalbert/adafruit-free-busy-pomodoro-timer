@@ -134,7 +134,26 @@ You might have to rewrite the pomodoro_ble.py script to work with your platform.
 
 ---
 
-## Use Without Freeplane
+## Configuration
+
+Edit settings at the top of `code.py`:
+
+```python
+CONFIG = {
+  "ble_name": "PomodoroDisp",
+  "text_pomodoro": "Pomodoro ends in",
+  "text_break": "Break ends in",
+  "text_idle": "Idle",
+  "text_paused": "Paused",
+  "text_done": "Done!",
+  "neopixel_pin": "D5"
+}
+```
+
+
+---
+
+## Ussage
 
 At this point, you can trigger the hardware timer however you want:
 - From shell scripts
@@ -154,37 +173,26 @@ alias pomo25='python3 mac_pomodoro_ble.py START 1500'
 
 If you want full mind-map + Pomodoro workflow, follow the set-up instructions for my standaline freeplane pomodoro timer here: https://github.com/saulalbert/freeplane-pomodoro-timer
 
-* Use the script in this repo: `pomodoro_timer.groovy`  
-* Automatically sends BLE commands  
+* Instead of the stanalone script, use the pomodoro script in this repo: `pomodoro_timer.groovy`  
+* This automatically sends BLE commands on start/pause/stopping a pomodoro
 * Tracks time per Freeplane node  
-* Optional log to attributes
+* Optional log to attributes of main node
 
-🔧 Freeplane setup:
+### Freeplane setup:
 1. Enable scripting in settings
 2. Install Groovy Pomodoro script
 3. Configure path to `mac_pomodoro_ble.py`
 4. Start timer — Feather updates wirelessly
-5. You might want to create a copy of the script for 'offline' use (i.e., when you're not connecting to the feather).
+5. You might want to create a copy of the standalone [pomodoro.groovy]([url](https://github.com/saulalbert/freeplane-pomodoro-timer)) script for 'offline' use (i.e., when you're not connecting to the feather).
 
-> Freeplane integration is **optional** and lives in its own folder.
+> NB Freeplane integration is optional and lives in its own folder.
 
 ---
 
-## ⚙️ Configuration
 
-Edit settings at the top of `code.py`:
+## License
 
-```python
-CONFIG = {
-  "ble_name": "PomodoroDisp",
-  "text_pomodoro": "Pomodoro ends in",
-  "text_break": "Break ends in",
-  "text_idle": "Idle",
-  "text_paused": "Paused",
-  "text_done": "Done!",
-  "neopixel_pin": "D5"
-}
-```
+This project is released as **CC0-1.0 – Public Domain**  
 
 ---
 
@@ -193,12 +201,6 @@ CONFIG = {
 - Runs from USB **or** LiPo battery
 - Supports automatic charging
 - You can put this on the door of your office to dissuade interruptions
-
----
-
-## License
-
-This project is released as **CC0-1.0 – Public Domain**  
 
 ---
 
