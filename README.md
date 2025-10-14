@@ -26,12 +26,27 @@ A **wireless Pomodoro status display** built using an **Adafruit Feather nRF5284
 
 ### Neopixel safety 
 
-Probably not needed for a single pixel, but if you have multiple, best to add:
+Simple safety components for NeoPixel recommended by Adafruit:
 
+| Component | Purpose |
+|-----------|---------|
+| 470Ω resistor (data line) | Prevents signal spikes to the NeoPixel |
+| 1000µF capacitor (across 3V and GND) | Protects against inrush power at startup |
+
+#### Recommended wiring:
+
+```
 Feather D5 ---- 470Ω resistor ----> NeoPixel DIN
 Feather 3V -----------------------> NeoPixel +
 Feather GND ----------------------> NeoPixel GND
-1000µF capacitor across + and GND (note polarity)
+1000µF capacitor across + and GND (watch polarity!)
+```
+
+NB: The capacitor must be connected with correct polarity: **– to GND**, **+ to 3V**.
+
+This is essential if you expand to multiple LEDs later.
+
+
 
 ---
 
