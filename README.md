@@ -10,7 +10,7 @@ A **wireless Pomodoro status display** built using an **Adafruit Feather nRF5284
 
 ---
 
-## 🔧 Hardware Build Guide
+## Hardware Build 
 
 ### Parts List
 
