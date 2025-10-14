@@ -1,6 +1,5 @@
 """
 Pomodoro BLE Display for Adafruit Feather nRF52840 + SH1107 + NeoPixel
-Adds static header above countdown.
 CC0-1.0 Public Domain
 """
 
